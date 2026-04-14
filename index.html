@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>唐山劳动技师学院</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        body {
+            background: #000;
+            width: 100vw;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            padding: 60px 20px 60px;
+            scroll-behavior: smooth;
+        }
+
+        /* 雨滴全屏画布 */
+        #rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .contact {
+            position: fixed;
+            top: 15px;
+            left: 10px;
+            z-index: 999;
+            line-height: 1.4;
+        }
+        .douyin {
+            font-size: 12px;
+            background: linear-gradient(90deg, #00ffe7, #ff00c8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 4px #00ffe7;
+        }
+        .vx {
+            font-size: 11px;
+            background: linear-gradient(90deg, #00ffe7, #ff00c8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 4px #00ffe7;
+        }
+
+        .title {
+            position: relative;
+            z-index: 999;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #7b2ffd, #00f0ff, #ff00c8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+            animation: glow 2.5s infinite alternate;
+            margin-bottom: 50px;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            max-width: 380px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .text-top {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #00ffe7;
+            text-shadow: 0 0 6px #00ffe7;
+            text-align: center;
+            opacity: 0.9;
+            animation: fade 3s infinite alternate;
+        }
+
+        .img-box {
+            position: relative;
+            width: 240px;
+            height: auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 240, 255, 0.8);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.5), 0 0 50px rgba(255, 0, 200, 0.3);
+            animation: float 3s infinite ease-in-out;
+        }
+        .img-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
+            animation: shine 3s infinite linear;
+        }
+        .img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .img-box:active {
+            transform: scale(1.05);
+        }
+
+        .vx-reward {
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00ffe7, #ff00c8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px #ff00c8;
+            margin-top: -10px;
+            animation: glow 2s infinite alternate;
+        }
+
+        .text-bottom {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #ff00c8;
+            text-shadow: 0 0 6px #ff00c8;
+            text-align: center;
+            opacity: 0.9;
+            animation: fade 3s infinite alternate;
+        }
+
+        .footer-tip {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            text-align: center;
+            font-size: 12px;
+            color: #fff;
+            opacity: 0.6;
+        }
+
+        @keyframes glow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.4); }
+        }
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        @keyframes fade {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 全屏雨滴画布 -->
+<canvas id="rain"></canvas>
+
+<div class="contact">
+    <div class="douyin">douyin:nanfanghh</div>
+    <div class="vx">vx:hjbpk0312</div>
+</div>
+
+<h1 class="title">唐山劳动技师学院</h1>
+
+<div class="content">
+    <div class="text-top">
+        恭喜你被我恭喜到了<br>
+        答应我<br>
+        以后吃饭要用嘴<br>
+        走路要用腿<br>
+        每个成功男人背后<br>
+        都会有一条脊椎
+    </div>
+
+    <div class="img-box">
+        <img src="https://zza.de5.net/i/2026/04/13/69dcef8581cb5.png" alt="图片">
+    </div>
+
+    <div class="vx-reward">加主播vx有奖</div>
+
+    <div class="text-bottom">
+        别再难过了<br>
+        歇斯底里是崩溃<br>
+        底里歇斯是美味<br>
+        遇上困难要找我哦
+    </div>
+</div>
+
+<div class="footer-tip">雨滴特效 💧</div>
+
+<script>
+// ==================== 全屏雨滴内置代码 ====================
+const canvas = document.getElementById('rain');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const drops = [];
+const count = 180;
+
+for (let i = 0; i < count; i++) {
+    drops.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        len: Math.random() * 20 + 10,
+        speed: Math.random() * 6 + 4,
+        opacity: Math.random() * 0.6 + 0.2
+    });
+}
+
+function drawRain() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = 'rgba(173, 216, 230, 0.7)';
+    ctx.lineWidth = 1.5;
+
+    for (let d of drops) {
+        ctx.beginPath();
+        ctx.globalAlpha = d.opacity;
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x, d.y + d.len);
+        ctx.stroke();
+
+        d.y += d.speed;
+        if (d.y > canvas.height) d.y = -d.len;
+    }
+    requestAnimationFrame(drawRain);
+}
+drawRain();
+</script>
+
+</body>
+</html>
